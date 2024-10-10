@@ -19,37 +19,25 @@
             <div class ="col-md-12">
                 <div class ="card">
                     <div class ="card-header">
-                        <h4>Religions
+                        <h4>RELIGION VIEW
                             <a href="" class="btn btn-primary float-end"> Add New Religion</a>
                         </h4>
                     </div>
                     <div class= "card-body">
-                        <table class="table" style="table-layout: fixed; width: 100%;">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Action </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ( $data as $item )
-                                    
-                               
-                                <tr>
-                                    <td>{{ $item->id }}</td>
-                                    <td>{{ $item->name }}</td>
-                                    <td>
+               
+
+                        <p><strong>ID:</strong> {{ $data->id }}</p>
+                        <p><strong>Name:</strong> {{ $data->name }}</p>
+                        <p><strong>Description:</strong> {{ $data->description }}</p>
+                        <!-- Add other fields you want to display -->
+                    
+                            
+                            <br>
+
                                         <a href="" class="btn btn-success btn-sm"> VIEW</a>
                                         <a href="" class="btn btn-warning  btn-sm"> EDIT</a>
                                         <a href="" class="btn btn-danger  btn-sm"> DELETE</a>
-                                    </td>
-                                </tr>
-                                 @endforeach
-                            </tbody>
-
-                        </table>
-                        {{ $data->links() }}
+                    
                     </div>
                 </div>
             </div>

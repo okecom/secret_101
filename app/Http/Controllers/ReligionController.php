@@ -14,7 +14,7 @@ class ReligionController extends Controller
      */
     public function index()
     {
-        $data = Religion::all();
+        $data = Religion::paginate(1);
         
         return view ('religion.religion', compact('data'));
     }
@@ -46,9 +46,11 @@ class ReligionController extends Controller
      * @param  \App\Models\Religion  $religion
      * @return \Illuminate\Http\Response
      */
-    public function show(Religion $religion)
+    public function show($id)
     {
-        //
+        $data = Religion::find($id);
+        
+        return view ('religion.religion_view', ['data'=> $data]);
     }
 
     /**
@@ -58,6 +60,7 @@ class ReligionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Religion $religion)
+
     {
         //
     }
