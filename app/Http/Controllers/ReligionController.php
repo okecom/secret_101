@@ -14,7 +14,7 @@ class ReligionController extends Controller
      */
     public function index()
     {
-        $data = Religion::paginate(1);
+        $data = Religion::paginate(3);
         
         return view ('religion.religion', compact('data'));
     }
@@ -26,7 +26,9 @@ class ReligionController extends Controller
      */
     public function create()
     {
-        //
+        return view ('religion.religion_create'); 
+     
+       
     }
 
     /**
@@ -37,7 +39,16 @@ class ReligionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'=>'required|string|max:255',
+            'description' => 'nullable',
+        ]);
+
+
+        Religion::create($request->all());
+
+       return redirect()->route('religions.index')->with('status', 'Religion Created successfully.');
+
     }
 
     /**
@@ -48,7 +59,7 @@ class ReligionController extends Controller
      */
     public function show($id)
     {
-        $data = Religion::find($id);
+        $data = Religion::findorFail($id);
         
         return view ('religion.religion_view', ['data'=> $data]);
     }
@@ -59,10 +70,14 @@ class ReligionController extends Controller
      * @param  \App\Models\Religion  $religion
      * @return \Illuminate\Http\Response
      */
-    public function edit(Religion $religion)
 
+   // public function edit(Religion $religion)
+   public function edit($id)
+    
     {
-        //
+        
+        $religion = Religion::findorFail($id);
+        return view ('religion.religion_edit', ['religion'=>$religion]);
     }
 
     /**
@@ -74,7 +89,10 @@ class ReligionController extends Controller
      */
     public function update(Request $request, Religion $religion)
     {
-        //
+        $religion->update($request->all());
+
+   
+      return redirect()->route('religions.index')->with('status', 'Religion Updated successfully.');
     }
 
     /**
@@ -85,6 +103,8 @@ class ReligionController extends Controller
      */
     public function destroy(Religion $religion)
     {
-        //
+       $religion->delete();
+
+      return redirect()->route('religions.index')->with('status', 'Religion deleted successfully.');
     }
 }
