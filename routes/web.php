@@ -2,6 +2,11 @@
 
 use App\Http\Controllers\ReligionController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ReligionbaseController;
+use App\Http\Controllers\DenominationController;
+use App\Http\Controllers\LocationController;
+use App\Http\Controllers\OrganisationController;
+use App\Http\Controllers\GroupController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +24,16 @@ Route::get('/', function () {
 });
 
 Route::resource('religions', ReligionController::class);
+
+
+Route::resource('religionbases', ReligionbaseController::class);
+Route::resource('denominations', DenominationController::class);
+Route::resource('locations', LocationController::class);
+Route::resource('organisations', OrganisationController::class);
+Route::resource('groups', GroupController::class);
+
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
